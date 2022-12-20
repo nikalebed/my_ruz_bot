@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  redis:
+    image: redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '6390:6379'
+
+  app:
+    build:
+      context: app
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+    volumes:
+      - /Users/veronikalebedyuk/Desktop/ms/ms_bot/app:/data
+
